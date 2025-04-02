@@ -3,18 +3,27 @@
 import { useRouter } from "next/navigation";
 import FormLayout from "@/components/form-layout";
 import NavigationButtons from "@/components/navigation-buttons";
-import { useFormStore } from "@/lib/store";
+import { FormData, useFormStore } from "@/lib/store";
 import { Share2 } from "lucide-react";
 import { shareViaWhatsApp } from "@/lib/generate-message";
 import PreviewMessage from "@/components/preview-message";
+import { pdf } from "@react-pdf/renderer";
+import { EventQuote } from "@/components/event-quote";
+import { saveAs } from "file-saver";
 
 export default function Resumo() {
   const router = useRouter();
   const { data, resetForm } = useFormStore();
 
-  const handleShare = () => {
-    // Share via WhatsApp
-    shareViaWhatsApp(data);
+  const handleShare = async () => {
+    const document = <EventQuote formData={data} />;
+
+    pdf(document)
+      .toBlob()
+      .then((blob) => {
+        saveAs(blob, `orçamento.pdf`);
+      })
+      .catch((err) => alert(err));
   };
 
   const renderSection = (title: string, selected: boolean, items: string[]) => {
@@ -111,4 +120,28 @@ export default function Resumo() {
       </div>
     </FormLayout>
   );
+}
+
+export function shareViaWhatsAppPdf(formData: FormData) {
+  const blob = pdf(<EventQuote formData={formData} />)
+    .toBlob()
+    .then((blob) => {
+      // 2. Criar um link temporário
+      const url = URL.createObjectURL(blob);
+
+      // 3. Criar um elemento <a> invisível para download
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "meu-pdf.pdf"; // Nome do arquivo
+      document.body.appendChild(link);
+
+      // 4. Disparar o download
+      link.click();
+
+      // 5. Limpar
+      setTimeout(() => {
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }, 100);
+    });
 }
