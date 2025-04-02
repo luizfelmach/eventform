@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { Button } from "@/components/ui/button"
-import { Check } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { Check } from "lucide-react";
 
 export default function SelectionButton({
   selected,
@@ -11,17 +11,19 @@ export default function SelectionButton({
   children,
   className = "",
 }: {
-  selected: boolean
-  onClick: () => void
-  children: React.ReactNode
-  className?: string
+  selected: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+  className?: string;
 }) {
   return (
     <Button
       type="button"
       variant="outline"
-      className={`relative w-full justify-start text-left p-4 mb-3 border-2 ${
-        selected ? "border-[#f5a9a9] bg-[#f5a9a9]/10" : "border-gray-700 hover:border-[#f5a9a9]/50"
+      className={`relative w-full justify-start text-left p-4 mb-3 border-2 hover:bg-transparent hover:text-white ${
+        selected
+          ? "border-[#f5a9a9] bg-[#f5a9a9]/10"
+          : "border-gray-700 hover:border-[#f5a9a9]/50"
       } ${className}`}
       onClick={onClick}
     >
@@ -32,6 +34,5 @@ export default function SelectionButton({
         </div>
       )}
     </Button>
-  )
+  );
 }
-
