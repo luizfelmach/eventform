@@ -27,7 +27,7 @@ export default function SelectionButton({
       } ${className}`}
       onClick={onClick}
     >
-      <div className="flex-1">{children}</div>
+      <div className="flex-1 line-clamp-4">{children}</div>
       {selected && (
         <div className="absolute right-3 top-1/2 -translate-y-1/2">
           <Check className="h-5 w-5 text-[#f5a9a9]" />
