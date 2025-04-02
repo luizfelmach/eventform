@@ -9,16 +9,16 @@ import SelectedItemsList from "@/components/selected-items-list";
 import { useFormStore } from "@/lib/store";
 
 const ITENS_PREDEFINIDOS = [
-  "Arroz branco",
-  "Feijão",
+  "Carne de boi",
+  "Carne de porco",
+  "Frango",
+  "Linguiça",
+  "Pão de alho",
+  "Coração de frango",
   "Feijão tropeiro",
-  "Macarrão ao molho branco",
-  "Carne de boi ao molho madeira",
-  "Salada de folhas e legumes",
-  "Farofa",
+  "Arroz branco",
   "Vinagrete",
-  "Salpicão",
-  "Frango frito (Coxa e sobrecoxa)",
+  "Frutas",
 ];
 
 export default function Churrasco() {

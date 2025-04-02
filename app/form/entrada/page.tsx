@@ -10,10 +10,9 @@ import { useFormStore } from "@/lib/store";
 
 const ENTRADAS_PREDEFINIDAS = [
   "Salgados fritos",
+  "Salgados assados",
   "Torta salgada",
-  "Tábua de frios",
-  "Mini quiches",
-  "Bolinhos de bacalhau",
+  "Entrada de frios individuais",
 ];
 
 export default function Entrada() {

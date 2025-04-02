@@ -9,12 +9,9 @@ import SelectedItemsList from "@/components/selected-items-list";
 import { useFormStore } from "@/lib/store";
 
 const OBSERVACOES_PREDEFINIDAS = [
-  "Evento com crianças",
-  "Necessário garçons",
-  "Necessário equipe de limpeza",
-  "Necessário estacionamento",
-  "Necessário segurança",
-  "Necessário DJ",
+  "Garçom incluso no serviço",
+  "Material de servir incluso no preço do orçamento",
+  "Orçamento válido por 7 dias",
 ];
 
 export default function Observacoes() {

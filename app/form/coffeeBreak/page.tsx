@@ -9,16 +9,24 @@ import SelectedItemsList from "@/components/selected-items-list";
 import { useFormStore } from "@/lib/store";
 
 const ITENS_PREDEFINIDOS = [
-  "Arroz branco",
-  "Feijão",
-  "Feijão tropeiro",
-  "Macarrão ao molho branco",
-  "Carne de boi ao molho madeira",
-  "Salada de folhas e legumes",
-  "Farofa",
-  "Vinagrete",
-  "Salpicão",
-  "Frango frito (Coxa e sobrecoxa)",
+  "Café c/ açúcar",
+  "Café s/ açúcar",
+  "Leite",
+  "Sucos",
+  "Pão caseiro",
+  "Pão de sal",
+  "Pão doce",
+  "Mini hamburguer",
+  "Bolos (cenoura, chocolate, laranja, fubá, etc)",
+  "Cachorro-quente",
+  "Frutas",
+  "Margarina",
+  "Chá",
+  "Doces caseiros",
+  "Biscoito",
+  "Iorgute",
+  "Pão de queijo",
+  "Salgados",
 ];
 
 export default function CoffeeBreak() {

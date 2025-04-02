@@ -18,6 +18,10 @@ const ITENS_PREDEFINIDOS = [
   "Farofa",
   "Vinagrete",
   "Salpicão",
+  "Batata c/ requeijão e bacon",
+  "Batata sauté",
+  "Filé de frango grelhado",
+  "Carne de porco assada",
   "Frango frito (Coxa e sobrecoxa)",
 ];
 
