@@ -20,7 +20,7 @@ export default function SelectionButton({
     <Button
       type="button"
       variant="outline"
-      className={`relative w-full justify-start text-left p-4 mb-3 border-2 hover:bg-transparent hover:text-white ${
+      className={`relative w-full h-12 justify-start text-left p-4 mb-3 border-2 hover:bg-transparent hover:text-white ${
         selected
           ? "border-[#f5a9a9] bg-[#f5a9a9]/10"
           : "border-gray-700 hover:border-[#f5a9a9]/50"
