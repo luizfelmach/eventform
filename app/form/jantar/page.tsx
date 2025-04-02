@@ -26,7 +26,7 @@ export default function Jantar() {
   const { data, setJantar, addJantarItem, removeJantarItem } = useFormStore();
 
   const handleNext = () => {
-    router.push("/form/bebidas");
+    router.push("/form/churrasco");
   };
 
   const toggleItem = (item: string) => {

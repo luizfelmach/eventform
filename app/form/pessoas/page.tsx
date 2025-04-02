@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import FormLayout from "@/components/form-layout"
-import NavigationButtons from "@/components/navigation-buttons"
-import { Input } from "@/components/ui/input"
-import { useFormStore } from "@/lib/store"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import FormLayout from "@/components/form-layout";
+import NavigationButtons from "@/components/navigation-buttons";
+import { Input } from "@/components/ui/input";
+import { useFormStore } from "@/lib/store";
 
 export default function QuantidadePessoas() {
-  const router = useRouter()
-  const { data, setQuantidadePessoas } = useFormStore()
+  const router = useRouter();
+  const { data, setQuantidadePessoas } = useFormStore();
   const [quantidade, setQuantidade] = useState<string>(
-    data.quantidadePessoas > 0 ? data.quantidadePessoas.toString() : "",
-  )
+    data.quantidadePessoas > 0 ? data.quantidadePessoas.toString() : ""
+  );
 
   const handleNext = () => {
     if (quantidade) {
-      setQuantidadePessoas(Number.parseInt(quantidade))
-      router.push("/form/entrada")
+      setQuantidadePessoas(Number.parseInt(quantidade));
+      router.push("/form/entrada");
     }
-  }
+  };
 
   return (
     <FormLayout title="Qual a quantidade de pessoas para o evento?" step={1}>
@@ -40,6 +40,5 @@ export default function QuantidadePessoas() {
         />
       </div>
     </FormLayout>
-  )
+  );
 }
-

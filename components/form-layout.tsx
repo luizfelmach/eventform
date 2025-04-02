@@ -1,16 +1,16 @@
-import type { ReactNode } from "react"
-import Logo from "./logo"
+import type { ReactNode } from "react";
+import Logo from "./logo";
 
 export default function FormLayout({
   children,
   title,
   step,
-  totalSteps = 9,
+  totalSteps = 12,
 }: {
-  children: ReactNode
-  title: string
-  step: number
-  totalSteps?: number
+  children: ReactNode;
+  title: string;
+  step: number;
+  totalSteps?: number;
 }) {
   return (
     <div className="flex min-h-screen flex-col bg-black text-white">
@@ -24,7 +24,10 @@ export default function FormLayout({
             Passo {step} de {totalSteps}
           </span>
           <div className="h-1 flex-1 mx-2 bg-gray-800 rounded-full overflow-hidden">
-            <div className="h-full bg-[#f5a9a9]" style={{ width: `${(step / totalSteps) * 100}%` }} />
+            <div
+              className="h-full bg-[#f5a9a9]"
+              style={{ width: `${(step / totalSteps) * 100}%` }}
+            />
           </div>
         </div>
 
@@ -33,6 +36,5 @@ export default function FormLayout({
         <div className="max-w-md mx-auto">{children}</div>
       </div>
     </div>
-  )
+  );
 }
-

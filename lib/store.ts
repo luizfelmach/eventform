@@ -1,63 +1,80 @@
-import { create } from "zustand"
-import { persist } from "zustand/middleware"
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 export type FormData = {
-  quantidadePessoas: number
+  quantidadePessoas: number;
   entrada: {
-    selecionado: boolean
-    itens: string[]
-  }
+    selecionado: boolean;
+    itens: string[];
+  };
   rodaButeco: {
-    selecionado: boolean
-    itens: string[]
-  }
+    selecionado: boolean;
+    itens: string[];
+  };
   almoco: {
-    selecionado: boolean
-    itens: string[]
-  }
+    selecionado: boolean;
+    itens: string[];
+  };
   jantar: {
-    selecionado: boolean
-    itens: string[]
-  }
+    selecionado: boolean;
+    itens: string[];
+  };
+  churrasco: {
+    selecionado: boolean;
+    itens: string[];
+  };
+  coffeeBreak: {
+    selecionado: boolean;
+    itens: string[];
+  };
   bebidas: {
-    selecionado: boolean
-    itens: string[]
-  }
+    selecionado: boolean;
+    itens: string[];
+  };
   espaco: {
-    selecionado: boolean
-    itens: string[]
-  }
-  preco: string
-  observacoes: string[]
-}
+    selecionado: boolean;
+    itens: string[];
+  };
+  preco: string;
+  observacoes: string[];
+};
 
 type FormStore = {
-  data: FormData
-  setQuantidadePessoas: (quantidade: number) => void
-  setEntrada: (selecionado: boolean, itens?: string[]) => void
-  addEntradaItem: (item: string) => void
-  removeEntradaItem: (index: number) => void
-  setRodaButeco: (selecionado: boolean, itens?: string[]) => void
-  addRodaBudecoItem: (item: string) => void
-  removeRodaBudecoItem: (index: number) => void
-  setAlmoco: (selecionado: boolean, itens?: string[]) => void
-  addAlmocoItem: (item: string) => void
-  removeAlmocoItem: (index: number) => void
-  setJantar: (selecionado: boolean, itens?: string[]) => void
-  addJantarItem: (item: string) => void
-  removeJantarItem: (index: number) => void
-  setBebidas: (selecionado: boolean, itens?: string[]) => void
-  addBebidasItem: (item: string) => void
-  removeBebidasItem: (index: number) => void
-  setEspaco: (selecionado: boolean, itens?: string[]) => void
-  addEspacoItem: (item: string) => void
-  removeEspacoItem: (index: number) => void
-  setPreco: (preco: string) => void
-  setObservacoes: (observacoes: string[]) => void
-  addObservacao: (observacao: string) => void
-  removeObservacao: (index: number) => void
-  resetForm: () => void
-}
+  data: FormData;
+  setQuantidadePessoas: (quantidade: number) => void;
+  setEntrada: (selecionado: boolean, itens?: string[]) => void;
+  addEntradaItem: (item: string) => void;
+  removeEntradaItem: (index: number) => void;
+  setRodaButeJantarco: (selecionado: boolean, itens?: string[]) => void;
+  addRodaBudecoItem: (item: string) => void;
+  removeRodaBudecoItem: (index: number) => void;
+  setAlmoco: (selecionado: boolean, itens?: string[]) => void;
+  addAlmocoItem: (item: string) => void;
+  removeAlmocoItem: (index: number) => void;
+  setJantar: (selecionado: boolean, itens?: string[]) => void;
+  addJantarItem: (item: string) => void;
+  removeJantarItem: (index: number) => void;
+
+  setChurrasco: (selecionado: boolean, itens?: string[]) => void;
+  addChurrascoItem: (item: string) => void;
+  removeChurrascoItem: (index: number) => void;
+
+  setCoffeeBreak: (selecionado: boolean, itens?: string[]) => void;
+  addCoffeeBreakItem: (item: string) => void;
+  removeCoffeeBreakItem: (index: number) => void;
+
+  setBebidas: (selecionado: boolean, itens?: string[]) => void;
+  addBebidasItem: (item: string) => void;
+  removeBebidasItem: (index: number) => void;
+  setEspaco: (selecionado: boolean, itens?: string[]) => void;
+  addEspacoItem: (item: string) => void;
+  removeEspacoItem: (index: number) => void;
+  setPreco: (preco: string) => void;
+  setObservacoes: (observacoes: string[]) => void;
+  addObservacao: (observacao: string) => void;
+  removeObservacao: (index: number) => void;
+  resetForm: () => void;
+};
 
 const initialData: FormData = {
   quantidadePessoas: 0,
@@ -77,6 +94,14 @@ const initialData: FormData = {
     selecionado: false,
     itens: [],
   },
+  churrasco: {
+    selecionado: false,
+    itens: [],
+  },
+  coffeeBreak: {
+    selecionado: false,
+    itens: [],
+  },
   bebidas: {
     selecionado: false,
     itens: [],
@@ -87,7 +112,7 @@ const initialData: FormData = {
   },
   preco: "",
   observacoes: [],
-}
+};
 
 export const useFormStore = create<FormStore>()(
   persist(
@@ -231,6 +256,72 @@ export const useFormStore = create<FormStore>()(
           },
         })),
 
+      setChurrasco: (selecionado, itens) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            churrasco: {
+              selecionado,
+              itens: itens || (selecionado ? state.data.churrasco.itens : []),
+            },
+          },
+        })),
+
+      addChurrascoItem: (item) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            churrasco: {
+              ...state.data.churrasco,
+              itens: [...state.data.churrasco.itens, item],
+            },
+          },
+        })),
+
+      removeChurrascoItem: (index) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            churrasco: {
+              ...state.data.churrasco,
+              itens: state.data.churrasco.itens.filter((_, i) => i !== index),
+            },
+          },
+        })),
+
+      setCoffeeBreak: (selecionado, itens) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            coffeeBreak: {
+              selecionado,
+              itens: itens || (selecionado ? state.data.coffeeBreak.itens : []),
+            },
+          },
+        })),
+
+      addCoffeeBreakItem: (item) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            coffeeBreak: {
+              ...state.data.coffeeBreak,
+              itens: [...state.data.coffeeBreak.itens, item],
+            },
+          },
+        })),
+
+      removeCoffeeBreakItem: (index) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            coffeeBreak: {
+              ...state.data.coffeeBreak,
+              itens: state.data.coffeeBreak.itens.filter((_, i) => i !== index),
+            },
+          },
+        })),
+
       setBebidas: (selecionado, itens) =>
         set((state) => ({
           data: {
@@ -327,7 +418,6 @@ export const useFormStore = create<FormStore>()(
     }),
     {
       name: "event-form-storage",
-    },
-  ),
-)
-
+    }
+  )
+);

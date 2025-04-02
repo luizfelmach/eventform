@@ -27,7 +27,7 @@ export default function Espaco() {
   };
 
   return (
-    <FormLayout title="O espaço será utilizado?" step={7}>
+    <FormLayout title="O espaço será utilizado?" step={9}>
       <div className="space-y-6">
         <div className="grid grid-cols-2 gap-3">
           <SelectionButton

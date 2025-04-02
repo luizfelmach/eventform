@@ -9,66 +9,65 @@ import SelectedItemsList from "@/components/selected-items-list";
 import { useFormStore } from "@/lib/store";
 
 const ITENS_PREDEFINIDOS = [
-  "Água",
-  "Coca-Cola",
-  "Guaraná",
-  "Suco 2 sabores",
-  "Cerveja",
-  "Chopp",
-  "Vinho",
-  "Drinks alcoólicos",
-  "Drinks s/ álcool",
+  "Arroz branco",
+  "Feijão",
+  "Feijão tropeiro",
+  "Macarrão ao molho branco",
+  "Carne de boi ao molho madeira",
+  "Salada de folhas e legumes",
+  "Farofa",
+  "Vinagrete",
+  "Salpicão",
+  "Frango frito (Coxa e sobrecoxa)",
 ];
 
-export default function Bebidas() {
+export default function CoffeeBreak() {
   const router = useRouter();
-  const { data, setBebidas, addBebidasItem, removeBebidasItem } =
+  const { data, setCoffeeBreak, addCoffeeBreakItem, removeCoffeeBreakItem } =
     useFormStore();
 
   const handleNext = () => {
-    router.push("/form/espaco");
+    router.push("/form/bebidas");
   };
 
   const toggleItem = (item: string) => {
-    if (data.bebidas.itens.includes(item)) {
-      removeBebidasItem(data.bebidas.itens.indexOf(item));
+    if (data.coffeeBreak.itens.includes(item)) {
+      removeCoffeeBreakItem(data.coffeeBreak.itens.indexOf(item));
     } else {
-      addBebidasItem(item);
+      addCoffeeBreakItem(item);
     }
   };
 
   return (
-    <FormLayout title="Haverá bebidas?" step={8}>
+    <FormLayout title="Haverá CoffeeBreak?" step={7}>
       <div className="space-y-6">
         <div className="grid grid-cols-2 gap-3">
           <SelectionButton
-            selected={data.bebidas.selecionado}
-            onClick={() => setBebidas(true)}
+            selected={data.coffeeBreak.selecionado}
+            onClick={() => setCoffeeBreak(true)}
             className="h-16 text-lg"
           >
             Sim
           </SelectionButton>
 
           <SelectionButton
-            selected={!data.bebidas.selecionado}
-            onClick={() => setBebidas(false)}
+            selected={!data.coffeeBreak.selecionado}
+            onClick={() => setCoffeeBreak(false)}
             className="h-16 text-lg"
           >
             Não
           </SelectionButton>
         </div>
 
-        {data.bebidas.selecionado && (
+        {data.coffeeBreak.selecionado && (
           <>
             <div className="mt-6">
-              <h3 className="text-lg font-medium mb-3">
-                Selecione as bebidas:
-              </h3>
+              <h3 className="text-lg font-medium mb-3">Selecione os itens:</h3>
               <div className="space-y-3">
                 {ITENS_PREDEFINIDOS.map((item) => (
                   <SelectionButton
                     key={item}
-                    selected={data.bebidas.itens.includes(item)}
+                    selected={data.coffeeBreak.itens.includes(item)}
                     onClick={() => toggleItem(item)}
                   >
                     {item}
@@ -78,21 +77,21 @@ export default function Bebidas() {
             </div>
 
             <SelectedItemsList
-              items={data.bebidas.itens.filter(
+              items={data.coffeeBreak.itens.filter(
                 (item) => !ITENS_PREDEFINIDOS.includes(item)
               )}
-              onRemove={removeBebidasItem}
+              onRemove={removeCoffeeBreakItem}
             />
 
             <CustomItemInput
-              onAdd={addBebidasItem}
-              placeholder="Digite uma bebida personalizada"
+              onAdd={addCoffeeBreakItem}
+              placeholder="Digite um item personalizado"
             />
           </>
         )}
 
         <NavigationButtons
-          onBack={() => router.push("/form/jantar")}
+          onBack={() => router.push("/form/churrasco")}
           onNext={handleNext}
         />
       </div>
