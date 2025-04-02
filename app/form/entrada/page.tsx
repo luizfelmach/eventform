@@ -1,37 +1,37 @@
-"use client"
+"use client";
 
-import { useRouter } from "next/navigation"
-import FormLayout from "@/components/form-layout"
-import NavigationButtons from "@/components/navigation-buttons"
-import SelectionButton from "@/components/selection-button"
-import CustomItemInput from "@/components/custom-item-input"
-import SelectedItemsList from "@/components/selected-items-list"
-import { useFormStore } from "@/lib/store"
+import { useRouter } from "next/navigation";
+import FormLayout from "@/components/form-layout";
+import NavigationButtons from "@/components/navigation-buttons";
+import SelectionButton from "@/components/selection-button";
+import CustomItemInput from "@/components/custom-item-input";
+import SelectedItemsList from "@/components/selected-items-list";
+import { useFormStore } from "@/lib/store";
 
 const ENTRADAS_PREDEFINIDAS = [
-  "Canapés variados",
+  "Salgados fritos",
+  "Torta salgada",
   "Tábua de frios",
   "Mini quiches",
   "Bolinhos de bacalhau",
-  "Coxinhas",
-  "Empadas",
-]
+];
 
 export default function Entrada() {
-  const router = useRouter()
-  const { data, setEntrada, addEntradaItem, removeEntradaItem } = useFormStore()
+  const router = useRouter();
+  const { data, setEntrada, addEntradaItem, removeEntradaItem } =
+    useFormStore();
 
   const handleNext = () => {
-    router.push("/form/roda-buteco")
-  }
+    router.push("/form/roda-buteco");
+  };
 
   const toggleItem = (item: string) => {
     if (data.entrada.itens.includes(item)) {
-      removeEntradaItem(data.entrada.itens.indexOf(item))
+      removeEntradaItem(data.entrada.itens.indexOf(item));
     } else {
-      addEntradaItem(item)
+      addEntradaItem(item);
     }
-  }
+  };
 
   return (
     <FormLayout title="Haverá entrada?" step={2}>
@@ -57,7 +57,9 @@ export default function Entrada() {
         {data.entrada.selecionado && (
           <>
             <div className="mt-6">
-              <h3 className="text-lg font-medium mb-3">Selecione as entradas:</h3>
+              <h3 className="text-lg font-medium mb-3">
+                Selecione as entradas:
+              </h3>
               <div className="space-y-3">
                 {ENTRADAS_PREDEFINIDAS.map((item) => (
                   <SelectionButton
@@ -72,17 +74,24 @@ export default function Entrada() {
             </div>
 
             <SelectedItemsList
-              items={data.entrada.itens.filter((item) => !ENTRADAS_PREDEFINIDAS.includes(item))}
+              items={data.entrada.itens.filter(
+                (item) => !ENTRADAS_PREDEFINIDAS.includes(item)
+              )}
               onRemove={removeEntradaItem}
             />
 
-            <CustomItemInput onAdd={addEntradaItem} placeholder="Digite uma entrada personalizada" />
+            <CustomItemInput
+              onAdd={addEntradaItem}
+              placeholder="Digite uma entrada personalizada"
+            />
           </>
         )}
 
-        <NavigationButtons onBack={() => router.push("/form/pessoas")} onNext={handleNext} />
+        <NavigationButtons
+          onBack={() => router.push("/form/pessoas")}
+          onNext={handleNext}
+        />
       </div>
     </FormLayout>
-  )
+  );
 }
-
